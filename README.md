@@ -4,6 +4,8 @@
 مع تحصين أمني مُختبَر آلياً (**120 اختباراً**) وجاهزية إطلاق تجاري (امتثال ZATCA +
 بوابة دفع + استعادة كلمة المرور + توثيق API).
 
+> 📂 **كل الأقسام مطوية** — اضغط على عنوان أي قسم لفتحه.
+
 ## 📋 نظرة عامة
 
 | المكوّن | التقنية | المنفذ | الوصف |
@@ -12,9 +14,10 @@
 | **Marketplace** | React 19 + Vite 7 | 5173 | متجر إلكتروني للعملاء (RTL عربي كامل) |
 | **Desktop** | React 19 + Vite 7 | 3000 | لوحة إدارة المبيعات ونقطة البيع POS |
 
-> 📂 **الأقسام التفصيلية أدناه مطوية** — اضغط على عنوان أي قسم لفتحه.
+## 📂 فهرس الأقسام
 
-## 🚀 البدء السريع (تطوير محلي)
+<details>
+<summary><b>🚀 البدء السريع (تطوير محلي)</b></summary>
 
 ### 1. الخادم الخلفي
 ```bash
@@ -48,9 +51,20 @@ npm run dev
 
 > الواجهتان تتصلان تلقائياً بالخادم عبر Vite proxy — لا إعداد إضافي مطلوب.
 
-## 🐳 النشر
+</details>
 
-### بالإنتاج (Docker Compose)
+<details>
+<summary><b>☁️ النشر — Render المجاني (خطوة واحدة)</b></summary>
+
+لتجربة النظام كاملاً على الإنترنت **مجاناً وبخطوة واحدة** — كل البنية معرّفة مسبقاً في `render.yaml`
+(قاعدة PostgreSQL + خادم Django + الواجهتان) عبر Render Blueprint:
+
+**الخطوات التفصيلية: [RENDER_DEPLOY.md](RENDER_DEPLOY.md)**
+
+</details>
+
+<details>
+<summary><b>🐳 النشر بالإنتاج (Docker Compose)</b></summary>
 
 ```bash
 # 1) انسخ نموذج البيئة واملأ القيم الإلزامية (SECRET_KEY قوية، النطاقات، DB_PASSWORD)
@@ -65,19 +79,10 @@ docker compose exec backend python manage.py createsuperuser
 
 **قائمة تحقق ما قبل الإطلاق + (SSL، نسخ احتياطي، مراقبة، نشر يدوي): [DEPLOYMENT.md](DEPLOYMENT.md)**
 
-### ☁️ النشر المجاني السريع على Render (جديد)
-
-لتجربة النظام كاملاً على الإنترنت **مجاناً وبخطوة واحدة** — كل البنية معرّفة مسبقاً في `render.yaml`
-(قاعدة PostgreSQL + خادم Django + الواجهتان) عبر Render Blueprint:
-
-**الخطوات التفصيلية: [RENDER_DEPLOY.md](RENDER_DEPLOY.md)**
-
----
-
-## 🛡️ التحصين الأمني — التفاصيل
+</details>
 
 <details>
-<summary><b>الثغرات الحرجة المُغلقة (v1.0.2) — اضغط للعرض</b></summary>
+<summary><b>🛡️ التحصين الأمني — التفاصيل</b></summary>
 
 أغلق النظام الثغرات الحرجة التالية مع اختبارات آلية تثبت الإغلاق:
 
@@ -95,10 +100,8 @@ docker compose exec backend python manage.py createsuperuser
 
 </details>
 
-## ✨ سجل التغييرات
-
 <details>
-<summary><b>v1.3.0 — إعادة تصميم احترافية شاملة «الفخامة الهادئة» + ميزات تجارية</b></summary>
+<summary><b>✨ v1.3.0 — إعادة تصميم «الفخامة الهادئة» + ميزات تجارية</b></summary>
 
 استجابةً لتدقيق تصميم صارم (قائمة فحص احترافية + تقييم بصري VLM)، أُعيدت هيكلة
 هوية المتجر بالكامل على منهجية **Quiet Luxury** مع إغلاق كل فجوات التدقيق:
@@ -123,7 +126,7 @@ docker compose exec backend python manage.py createsuperuser
 </details>
 
 <details>
-<summary><b>v1.2.0 — الواجهات الاحترافية الفائقة + إغلاق فجوات الجودة P1</b></summary>
+<summary><b>✨ v1.2.0 — الواجهات الاحترافية الفائقة + إغلاق فجوات الجودة P1</b></summary>
 
 إضافةً إلى ما سبق، يضيف هذا الإصدار طبقة الجودة التشغيلية وهوية بصرية فاخرة كاملة:
 
@@ -145,7 +148,7 @@ docker compose exec backend python manage.py createsuperuser
 </details>
 
 <details>
-<summary><b>v1.1.0 — جاهزية الإطلاق التجاري</b></summary>
+<summary><b>🚀 v1.1.0 — جاهزية الإطلاق التجاري</b></summary>
 
 تنفيذاً لتوصيات تقرير فحص الجاهزية، أُغلقت كل المانعات الحرجة (P0) وأهم فجوات P1:
 
@@ -166,10 +169,8 @@ docker compose exec backend python manage.py createsuperuser
 
 </details>
 
-## ✨ الميزات المنفذة
-
 <details>
-<summary><b>Backend — الخادم الخلفي (مكتمل)</b></summary>
+<summary><b>⚙️ Backend — الخادم الخلفي (مكتمل)</b></summary>
 
 - ✅ مصادقة Token **منتهية الصلاحية** مع صلاحيات مبنية على 4 أدوار (admin/manager/employee/customer)
 - ✅ إدارة كاملة: منتجات، فئات، موردون، طلبات، دفعات، عمولات، مستخدمون
@@ -188,7 +189,7 @@ docker compose exec backend python manage.py createsuperuser
 </details>
 
 <details>
-<summary><b>Marketplace — المتجر الإلكتروني (مكتمل)</b></summary>
+<summary><b>🛒 Marketplace — المتجر الإلكتروني (مكتمل)</b></summary>
 
 - ✅ **مربوط بالكامل بالـ API** (لا بيانات وهمية)
 - ✅ واجهة المنتجات العامة بلا تسريب بيانات تجارية (توافر فقط: متوفر/كمية محدودة/نفد)
@@ -203,7 +204,7 @@ docker compose exec backend python manage.py createsuperuser
 </details>
 
 <details>
-<summary><b>Desktop — لوحة الإدارة ونقطة البيع (مكتمل)</b></summary>
+<summary><b>💰 Desktop — لوحة الإدارة ونقطة البيع (مكتمل)</b></summary>
 
 - ✅ **مربوط بالكامل بالـ API** — واجهات الموظفين ترى المسلسل الكامل (التكلفة والهوامش)
 - ✅ تسجيل دخول حقيقي للموظفين فقط + حماية كل المسارات
@@ -216,10 +217,8 @@ docker compose exec backend python manage.py createsuperuser
 
 </details>
 
-## 🔐 بيانات الدخول التجريبية
-
 <details>
-<summary><b>الحسابات الجاهزة بعد seed_data (اضغط للعرض — للتطوير فقط)</b></summary>
+<summary><b>🔐 بيانات الدخول التجريبية (التطوير فقط)</b></summary>
 
 | النظام | المستخدم | كلمة المرور | الدور |
 |--------|----------|-------------|-------|
@@ -233,10 +232,8 @@ docker compose exec backend python manage.py createsuperuser
 
 </details>
 
-## 📁 هيكل المشروع
-
 <details>
-<summary><b>شجرة الملفات الكاملة (اضغط للعرض)</b></summary>
+<summary><b>📁 هيكل المشروع</b></summary>
 
 ```
 TARAZ_FINAL/
@@ -269,10 +266,8 @@ TARAZ_FINAL/
 
 </details>
 
-## 🔌 APIs الرئيسية
-
 <details>
-<summary><b>المصادقة (اضغط للعرض)</b></summary>
+<summary><b>🔌 APIs — المصادقة</b></summary>
 
 | Endpoint | الوصف |
 |----------|-------|
@@ -285,7 +280,7 @@ TARAZ_FINAL/
 </details>
 
 <details>
-<summary><b>المنتجات والمخزون (اضغط للعرض)</b></summary>
+<summary><b>🔌 APIs — المنتجات والمخزون</b></summary>
 
 | Endpoint | الوصف |
 |----------|-------|
@@ -301,7 +296,7 @@ TARAZ_FINAL/
 </details>
 
 <details>
-<summary><b>الطلبات والمالية (اضغط للعرض)</b></summary>
+<summary><b>🔌 APIs — الطلبات والمالية</b></summary>
 
 | Endpoint | الوصف |
 |----------|-------|
@@ -314,7 +309,7 @@ TARAZ_FINAL/
 </details>
 
 <details>
-<summary><b>لوحة التحكم والمراقبة + مسارات v1.1.0 (اضغط للعرض)</b></summary>
+<summary><b>🔌 APIs — لوحة التحكم + مسارات v1.1.0</b></summary>
 
 | Endpoint | الوصف |
 |----------|-------|
@@ -336,10 +331,8 @@ TARAZ_FINAL/
 
 </details>
 
-## 🧪 الاختبارات والأوامر
-
 <details>
-<summary><b>تشغيل الاختبارات والأوامر المفيدة (اضغط للعرض)</b></summary>
+<summary><b>🧪 الاختبارات والأوامر المفيدة</b></summary>
 
 ```bash
 cd taraz_backend
@@ -365,10 +358,11 @@ npm run build                        # بناء الإنتاج (يفتش الأ�
 
 </details>
 
-## 📄 الترخيص
+<details>
+<summary><b>📄 الترخيص</b></summary>
 
 MIT License — انظر تفاصيل الاستخدام داخل المشروع.
 
----
-
 **الإصدار**: 1.3.0 — تحصين أمني مُختبَر (120/120 اختباراً ناجحة) ✅
+
+</details>
