@@ -1,0 +1,6 @@
+# متجر طراز — السماح بفهرسة المتجر العام
+User-agent: *
+Allow: /
+Disallow: /checkout
+Disallow: /orders
+Disallow: /reset-password

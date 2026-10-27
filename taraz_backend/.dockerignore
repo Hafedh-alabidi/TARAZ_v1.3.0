@@ -1,0 +1,13 @@
+# ملفات لا تدخل في بناء Docker
+__pycache__
+*.pyc
+venv/
+.env
+db.sqlite3
+staticfiles/
+media/
+*.log
+.git
+.gitignore
+Dockerfile
+docker-compose.yml

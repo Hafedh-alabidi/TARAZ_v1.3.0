@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* ============================================================
+   هوية طراز — نظام تصميم نقطة البيع (زمردي عميق × ذهبي)
+   ============================================================ */
+@theme {
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+  --color-brand-950: #022c22;
+
+  --color-gold-50: #fbf8eb;
+  --color-gold-100: #f5ecc8;
+  --color-gold-200: #f3de8f;
+  --color-gold-300: #ecb95a;
+  --color-gold-400: #e3aa32;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a9861d;
+  --color-gold-700: #86691a;
+  --color-gold-800: #6f551c;
+  --color-gold-900: #5f471d;
+
+  --color-ink-800: #0a2f26;
+  --color-ink-900: #04211b;
+  --color-ink-950: #021a15;
+
+  --font-display: "Tajawal", "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", "Tajawal", "Segoe UI", Tahoma, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(4 33 27 / 0.05), 0 6px 20px rgb(4 33 27 / 0.06);
+  --shadow-luxe: 0 2px 6px rgb(4 33 27 / 0.06), 0 14px 36px rgb(4 33 27 / 0.10);
+  --shadow-float: 0 4px 10px rgb(4 33 27 / 0.07), 0 24px 56px rgb(4 33 27 / 0.14);
+  --shadow-gold-glow: 0 0 0 1px rgb(201 162 39 / 0.35), 0 10px 36px rgb(201 162 39 / 0.22);
+
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.21, 0.61, 0.35, 1) both;
+  --animate-fade-in: fade-in 0.3s ease both;
+  --animate-scale-in: scale-in 0.28s cubic-bezier(0.21, 0.61, 0.35, 1) both;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-pulse-soft: pulse-soft 2.6s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f4;
+  color: #1c1917;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+}
+
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+::selection {
+  background: #a7f3d0;
+  color: #022c22;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eceae8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #34d399, #059669);
+  border-radius: 8px;
+  border: 2px solid #eceae8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #047857;
+}
+
+:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* أدوات مساعدة */
+.card {
+  background: #ffffff;
+  border: 1px solid rgb(231 229 228 / 0.8);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.input-luxe {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid #e7e5e4;
+  background: #ffffff;
+  font-size: 0.925rem;
+  font-family: var(--font-sans);
+  color: #1c1917;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-luxe::placeholder { color: #a8a29e; }
+.input-luxe:focus {
+  outline: none;
+  border-color: #059669;
+  box-shadow: 0 0 0 4px rgb(5 150 105 / 0.12);
+}
+
+.pattern-diamond {
+  background-image: url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 4 L52 28 L28 52 L4 28 Z' fill='none' stroke='%23ffffff' stroke-opacity='0.05'/%3E%3Ccircle cx='28' cy='28' r='1.5' fill='%23ffffff' fill-opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.glow-gold {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(227 170 50 / 0.20) 0%, transparent 65%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(120deg, #f3de8f 10%, #e3aa32 45%, #c9a227 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.animate-fade-up { animation: var(--animate-fade-up); }
+.animate-fade-in { animation: var(--animate-fade-in); }
+.animate-scale-in { animation: var(--animate-scale-in); }
+.animate-pulse-soft { animation: var(--animate-pulse-soft); }
+
+.stagger-1 { animation-delay: 0.07s; }
+.stagger-2 { animation-delay: 0.14s; }
+.stagger-3 { animation-delay: 0.21s; }
+.stagger-4 { animation-delay: 0.28s; }
+
+.skeleton {
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, #f0efee 25%, #e7e5e4 45%, #f0efee 65%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}

@@ -1,0 +1,120 @@
+# ============================================================
+# طراز — بيئة الإنتاج الكاملة
+#   1) انسخ .env.example إلى .env (بجانب هذا الملف) واملأ القيم
+#   2) docker compose up -d --build
+#
+# ✅ أمن: لا قيم افتراضية آمنة مزروعة — SECRET_KEY و DB_PASSWORD
+# إلزامية من ملف .env، والخادم يرفض الإقلاع بمفتاح تطوير معروف
+# (راجع حرّاس الإنتاج في taraz_backend/taraz_backend/settings.py).
+# ============================================================
+name: taraz
+
+services:
+  # قاعدة بيانات PostgreSQL
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-taraz}
+      POSTGRES_USER: ${DB_USER:-taraz}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?أدخل DB_PASSWORD في ملف .env قبل التشغيل}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-taraz}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [taraz]
+
+  # خادم Django
+  backend:
+    build:
+      context: ./taraz_backend
+    restart: unless-stopped
+    environment:
+      # ✅ سرّ إنتاجي إلزامي — لا يوجد ملف .env تطويري محمّل في الحاوية
+      SECRET_KEY: "${SECRET_KEY:?أدخل SECRET_KEY إنتاجية عشوائية في ملف .env — راجع DEPLOYMENT.md}"
+      ALLOWED_HOSTS: "${ALLOWED_HOSTS:?أدخل نطاقات الإنتاج في ALLOWED_HOSTS مثل taraz.com,admin.taraz.com}"
+      CORS_ALLOWED_ORIGINS: "${CORS_ALLOWED_ORIGINS:?أدخل نطاقات الواجهات في CORS_ALLOWED_ORIGINS مثل https://taraz.com,https://admin.taraz.com}"
+      CSRF_TRUSTED_ORIGINS: "${CSRF_TRUSTED_ORIGINS:?أدخل نطاقات CSRF الموثوقة مثل https://taraz.com,https://admin.taraz.com}"
+      DB_ENGINE: django.db.backends.postgresql
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${DB_NAME:-taraz}
+      DB_USER: ${DB_USER:-taraz}
+      DB_PASSWORD: "${DB_PASSWORD:?DB_PASSWORD مطلوبة}"
+      DEBUG: "False"
+      TIME_ZONE: ${TIME_ZONE:-Asia/Aden}
+      # بعد تفعيل HTTPS في nginx اجعلها True (راجع DEPLOYMENT.md — خطوة TLS)
+      SECURE_SSL_REDIRECT: ${SECURE_SSL_REDIRECT:-False}
+      # --- بوابة الدفع (جيب / Visa / Mastercard عبر مويسر) ---
+      TARAZ_PAYMENT_PROVIDER: ${TARAZ_PAYMENT_PROVIDER:-simulated}
+      MOYASAR_SECRET_KEY: ${MOYASAR_SECRET_KEY:-}
+      MOYASAR_PUBLISHABLE_KEY: ${MOYASAR_PUBLISHABLE_KEY:-}
+      # --- البريد (استعادة كلمة المرور والإشعارات) ---
+      EMAIL_BACKEND: ${EMAIL_BACKEND:-console}
+      EMAIL_HOST: ${EMAIL_HOST:-smtp.example.com}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_HOST_USER: ${EMAIL_HOST_USER:-}
+      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD:-}
+      EMAIL_USE_TLS: ${EMAIL_USE_TLS:-True}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL:-طراز <no-reply@taraz.com>}
+      # --- بيانات المتجر ---
+      TARAZ_SELLER_NAME: ${TARAZ_SELLER_NAME:-متجر طراز}
+      TARAZ_VAT_NUMBER: ${TARAZ_VAT_NUMBER:-100200300}
+      TARAZ_SUPPORT_EMAIL: ${TARAZ_SUPPORT_EMAIL:-DigitalCreativityteam5@gmail.com}
+      TARAZ_SUPPORT_PHONE: ${TARAZ_SUPPORT_PHONE:-00967 777279161}
+      TARAZ_TAX_RATE: ${TARAZ_TAX_RATE:-0.05}
+      TARAZ_SHIPPING_FLAT: ${TARAZ_SHIPPING_FLAT:-25}
+      TARAZ_FREE_SHIPPING_THRESHOLD: ${TARAZ_FREE_SHIPPING_THRESHOLD:-500}
+      TARAZ_COMMISSION_RATE: ${TARAZ_COMMISSION_RATE:-5.0}
+      TARAZ_MAX_DISCOUNT_RATIO: ${TARAZ_MAX_DISCOUNT_RATIO:-0.5}
+      TARAZ_TOKEN_TTL_DAYS: ${TARAZ_TOKEN_TTL_DAYS:-30}
+      ADMIN_URL_PATH: ${ADMIN_URL_PATH:-admin}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - static_files:/app/staticfiles
+      - media_files:/app/media
+    networks: [taraz]
+
+  # المتجر الإلكتروني
+  marketplace:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        APP: marketplace
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      # لتشغيل HTTPS فعلي: أزل التعليق عن 443 ومجلد الشهادات أسفله
+      # - "443:443"
+    depends_on: [backend]
+    networks: [taraz]
+    # volumes:
+    #   - ./certs:/etc/nginx/certs:ro
+
+  # تطبيق الإدارة (نقطة البيع)
+  desktop:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        APP: desktop
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on: [backend]
+    networks: [taraz]
+
+volumes:
+  postgres_data:
+  static_files:
+  media_files:
+
+networks:
+  taraz:
+    driver: bridge

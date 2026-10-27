@@ -1,0 +1,39 @@
+# ============================================================
+# .dockerignore لطراز — يمنع تسريب الأسرار والملفات الثقيلة للحاويات
+# ============================================================
+
+# الأسرار — لا تدخل الحاوية أبداً
+.env
+.env.local
+.env.production
+**/.env
+**/.env.local
+**/.env.production
+
+# قواعد بيانات وملفات تشغيل محلية
+**/db.sqlite3
+**/db.sqlite3-journal
+**/media/
+**/staticfiles/
+
+# Node
+**/node_modules
+**/dist
+**/.vite
+
+# Python
+**/__pycache__
+**/*.py[cod]
+**/venv
+**/.venv
+
+# أدوات التطوير
+.git
+.gitignore
+.idea
+.vscode
+*.swp
+.DS_Store
+
+# التوثيق
+*.md

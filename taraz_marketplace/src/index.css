@@ -1,0 +1,656 @@
+@import "tailwindcss";
+
+/* ============================================================
+   الخطوط المستضافة ذاتياً — تُحمَّل من الموقع نفسه بلا اعتماد
+   على خدمات خارجية: أسرع، أخصوصية أكثر، وتعمل دائماً
+   ============================================================ */
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-400-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-500-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-500-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-600-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-600-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-700-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "El Messiri";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/ElMessiri-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-300-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-300-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-400-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-500-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-500-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-600-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-600-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-700-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/IBMPlexSansArabic-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ============================================================
+   هوية طراز البصرية — نظام «الفخامة الهادئة» Quiet Luxury
+   زمردي عميق × ذهبي معدني على قاعدة عاجية دافئة
+   مبادئ: مساحات بيضاء سخية، خطوط شعرية، تباين متحفظ،
+   الزمردي للتفاعل فقط، الذهبي للإشارات الدقيقة
+   ============================================================ */
+@theme {
+  /* الزمردي العميق — التفاعل والثقة */
+  --color-brand-50: #f0faf5;
+  --color-brand-100: #dcf2e6;
+  --color-brand-200: #b9e4cf;
+  --color-brand-300: #8dd0b2;
+  --color-brand-400: #5cb693;
+  --color-brand-500: #349a78;
+  --color-brand-600: #1f7d61;
+  --color-brand-700: #16634e;
+  --color-brand-800: #114f40;
+  --color-brand-900: #0d4034;
+  --color-brand-950: #04211b;
+
+  /* الذهبي المعدني — الإشارات الدقيقة والتمييز */
+  --color-gold-50: #fbf9f0;
+  --color-gold-100: #f5efdb;
+  --color-gold-200: #ecdfb3;
+  --color-gold-300: #e0c887;
+  --color-gold-400: #d4b164;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a9861d;
+  --color-gold-700: #86691a;
+  --color-gold-800: #6f551c;
+  --color-gold-900: #5f471d;
+
+  /* الحبر الأخضر الداكن — الخلفيات التحريرية */
+  --color-ink-50: #f6f7f6;
+  --color-ink-100: #e7ebe8;
+  --color-ink-200: #ccd6d0;
+  --color-ink-700: #1e3a32;
+  --color-ink-800: #122b24;
+  --color-ink-900: #04211b;
+  --color-ink-950: #021a15;
+
+  /* الطباعة — تباين تحريري بين العناوين والنصوص */
+  --font-display: "El Messiri", "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", "El Messiri", "Segoe UI", Tahoma, sans-serif;
+
+  /* ظلال شعرية متحفظة */
+  --shadow-soft: 0 1px 2px rgb(4 33 27 / 0.04), 0 4px 12px rgb(4 33 27 / 0.04);
+  --shadow-luxe: 0 1px 3px rgb(4 33 27 / 0.05), 0 10px 28px rgb(4 33 27 / 0.08);
+  --shadow-float: 0 2px 6px rgb(4 33 27 / 0.06), 0 20px 44px rgb(4 33 27 / 0.12);
+  --shadow-gold-glow: 0 0 0 1px rgb(201 162 39 / 0.28), 0 6px 24px rgb(201 162 39 / 0.16);
+
+  /* حركات هادئة وواثقة */
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.21, 0.61, 0.35, 1) both;
+  --animate-fade-in: fade-in 0.35s ease both;
+  --animate-scale-in: scale-in 0.28s cubic-bezier(0.21, 0.61, 0.35, 1) both;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-pulse-soft: pulse-soft 2.8s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes marquee-rtl {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+
+/* ============================================================
+   الأساسيات
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #faf9f6;
+  color: #1c1917;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+::selection {
+  background: #dcf2e6;
+  color: #04211b;
+}
+
+/* شريط تمرير شعري أنيق */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #f2f1ed;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccd6d0;
+  border-radius: 8px;
+  border: 2px solid #f2f1ed;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8dd0b2;
+}
+
+/* حلقة تركيز موحدة وواضحة */
+:focus-visible {
+  outline: 2px solid #1f7d61;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* احترام تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   مكونات مساعدة — أزرار، بطاقات، حقول، أنماط
+   ============================================================ */
+
+/* الحاوية القياسية */
+.container-luxe {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) { .container-luxe { padding-inline: 2rem; } }
+@media (min-width: 1024px) { .container-luxe { padding-inline: 2.5rem; } }
+
+/* مساحة قسم تحريرية موحدة */
+.section {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+/* الزر الأساسي — زمردي عميق صلب بلا تدرجات صارخة */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.9rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  color: #ffffff;
+  background-color: #16634e;
+  box-shadow: 0 1px 2px rgb(4 33 27 / 0.18), inset 0 1px 0 rgb(255 255 255 / 0.10);
+  transition: background-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #114f40;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgb(4 33 27 / 0.22), inset 0 1px 0 rgb(255 255 255 / 0.10);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled {
+  background-color: #e7e5e4;
+  color: #a8a29e;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* الزر الحبري — للدعوات الرئيسية الكبيرة (هيرو/دفع) */
+.btn-ink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.1rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-display);
+  color: #f6f7f6;
+  background-color: #122b24;
+  box-shadow: 0 1px 2px rgb(2 26 21 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.08);
+  transition: background-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-ink:hover {
+  background-color: #04211b;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgb(2 26 21 / 0.30);
+}
+.btn-ink:active { transform: translateY(0); }
+
+/* الزر الذهبي — للعروض والدعوات المميزة فقط */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-display);
+  color: #2b1f04;
+  background-image: linear-gradient(135deg, #e0c887 0%, #d4b164 50%, #c9a227 100%);
+  box-shadow: 0 1px 2px rgb(95 71 29 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.35);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-gold:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 8px 22px rgb(201 162 39 / 0.30), inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+
+/* زر ثانوي شعري */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  color: #114f40;
+  background: transparent;
+  border: 1px solid #16634e40;
+  transition: all 0.16s ease;
+  cursor: pointer;
+}
+.btn-outline:hover {
+  background: #f0faf5;
+  border-color: #16634e;
+}
+
+/* زر شبحي على الخلفيات الداكنة */
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.9rem;
+  border-radius: 0.625rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  color: #f6f7f6;
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.22);
+  transition: all 0.16s ease;
+  cursor: pointer;
+}
+.btn-ghost-light:hover {
+  background: rgb(255 255 255 / 0.12);
+  border-color: rgb(255 255 255 / 0.38);
+}
+
+/* زر صغير عام */
+.btn-sm {
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* رابط نصي متحرك */
+.link-underline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #114f40;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0.35);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+.link-underline:hover::after { transform: scaleX(1); }
+
+/* حقل إدخال نظيف */
+.input-luxe {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 0.625rem;
+  border: 1px solid #e5e4df;
+  background: #ffffff;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  color: #1c1917;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-luxe::placeholder { color: #a8a29e; }
+.input-luxe:focus {
+  outline: none;
+  border-color: #1f7d61;
+  box-shadow: 0 0 0 3px rgb(31 125 97 / 0.10);
+}
+.input-luxe:disabled { background: #f5f5f4; color: #a8a29e; cursor: not-allowed; }
+
+/* بطاقة قياسية — حد شعري وظل خفيف جداً */
+.card {
+  background: #ffffff;
+  border: 1px solid #eae8e3;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+/* تسمية علوية ذهبية للأقسام — تباعد أحرف تحريري */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: #a9861d;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a227);
+}
+
+/* نص بتدرج ذهبي */
+.text-gradient-gold {
+  background: linear-gradient(120deg, #e0c887 10%, #d4b164 45%, #c9a227 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* سعر ما قبل الخصم — مشطوب باهت */
+.price-strike {
+  text-decoration: line-through;
+  text-decoration-color: #a8a29e;
+  color: #a8a29e;
+  font-weight: 400;
+}
+
+/* شارة الخصم الذهبية */
+.badge-sale {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #c9a227;
+  color: #2b1f04;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.28rem 0.6rem;
+  border-radius: 0.375rem;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   أنماط خلفيات متحفظة
+   ============================================================ */
+
+/* نمط معيني هندسي خفيف جداً — للخلفيات الداكنة */
+.pattern-diamond {
+  background-image: url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 4 L52 28 L28 52 L4 28 Z' fill='none' stroke='%23ffffff' stroke-opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* نمط نقطي خفيف — للبطاقات الفاتحة */
+.pattern-dots {
+  background-image: radial-gradient(rgb(31 125 97 / 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* توهج ذهبي شعاعي خافت */
+.glow-gold {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(212 177 100 / 0.14) 0%, transparent 65%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+/* توهج زمردي شعاعي خافت */
+.glow-emerald {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(52 154 120 / 0.16) 0%, transparent 65%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+/* ============================================================
+   أدوات مساعدة
+   ============================================================ */
+.animate-fade-up { animation: var(--animate-fade-up); }
+.animate-fade-in { animation: var(--animate-fade-in); }
+.animate-scale-in { animation: var(--animate-scale-in); }
+.animate-float { animation: var(--animate-float); }
+.animate-float-slow { animation: var(--animate-float-slow); }
+.animate-pulse-soft { animation: var(--animate-pulse-soft); }
+.animate-slide-down { animation: slide-down 0.22s ease both; }
+
+/* تأخيرات متدرجة للدخول */
+.stagger-1 { animation-delay: 0.06s; }
+.stagger-2 { animation-delay: 0.12s; }
+.stagger-3 { animation-delay: 0.18s; }
+.stagger-4 { animation-delay: 0.24s; }
+.stagger-5 { animation-delay: 0.30s; }
+.stagger-6 { animation-delay: 0.36s; }
+
+/* هيكل تحميل لامع */
+.skeleton {
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, #f1f0ec 25%, #e7e5e4 45%, #f1f0ec 65%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* إخفاء شريط التمرير للشرائح الأفقية */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* حشوة سفلية للجوال — لشريط التنقل السفلي الثابت */
+@media (max-width: 767px) {
+  body { padding-bottom: 64px; }
+}
+
+/* الطباعة — الفاتورة */
+@media print {
+  body { background: #ffffff !important; }
+  .no-print { display: none !important; }
+  .print-area {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  @page { margin: 12mm; }
+}
+
+/* حركة قديمة متاحة */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
