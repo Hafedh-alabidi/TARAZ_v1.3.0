@@ -1,0 +1,66 @@
+# ============================================================
+# طراز — خط CI/CD (P2): اختبارات الخادم + بناء الواجهتين
+# يعمل على كل push و pull_request
+# ============================================================
+name: TARAZ CI
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  backend-tests:
+    name: اختبارات الخادم الخلفي (Django)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: taraz_backend
+    env:
+      DJANGO_SECRET_KEY: ci-only-not-a-real-secret-key
+      DEBUG: 'True'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: تثبيت التبعيات
+        run: pip install -r requirements.txt
+      - name: فحص الهجرة الناقصة
+        run: python manage.py makemigrations --check --dry-run
+      - name: تشغيل الاختبارات
+        run: python manage.py test --parallel
+
+  marketplace-build:
+    name: بناء المتجر الإلكتروني (React)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: taraz_marketplace
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: taraz_marketplace/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  desktop-build:
+    name: بناء نقطة البيع (React)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: taraz_desktop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: taraz_desktop/package-lock.json
+      - run: npm ci
+      - run: npm run build
