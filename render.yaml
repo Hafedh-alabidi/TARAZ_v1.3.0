@@ -81,11 +81,11 @@ services:
 
   # ----------------------------------------------------------
   # 2) تطبيق الإدارة / نقطة البيع — React (موقع ثابت مجاني دائم)
+  #    ملاحظة: المواقع الثابتة مجانية بطبيعتها — لا تقبل حقل plan
   # ----------------------------------------------------------
   - type: web
     name: hafedh-taraz-pos
     runtime: static
-    plan: free
     rootDir: taraz_desktop
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
@@ -107,11 +107,11 @@ services:
 
   # ----------------------------------------------------------
   # 3) واجهة المتجر للزبائن — React (موقع ثابت مجاني دائم)
+  #    ملاحظة: المواقع الثابتة مجانية بطبيعتها — لا تقبل حقل plan
   # ----------------------------------------------------------
   - type: web
     name: hafedh-taraz-market
     runtime: static
-    plan: free
     rootDir: taraz_marketplace
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
